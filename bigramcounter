@@ -1,0 +1,10 @@
+#!/bin/bash
+
+tr ´[A-Z]´ ´[a-z]´ | tr -sc ´[a-z]´ ´[\\012*]´ > $$words
+tail -n +2 $$words > $$nextwords
+
+paste $$words $$nextwords | sort | uniq -c | sort -nr
+
+rm $$words $$nextwords
+
+# sh bigramcounter < test > test.bigram
